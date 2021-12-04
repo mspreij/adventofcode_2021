@@ -25,7 +25,7 @@ for($i=0;$i<12;$i++) {
     $arrays[$bits[$i]][] = $value;
   }
   $oxvals = $arrays[(int) (count($arrays[1]) >= count($arrays[0]))]; // magic trick
-  if (count($values) === 1) break;
+  if (count($oxvals) === 1) break;
 }
 $oxygen = bindec(current($oxvals));
 
