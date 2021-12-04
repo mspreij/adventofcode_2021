@@ -38,23 +38,33 @@ foreach($card_data_list as $i => $card_raw) {
   }
 }
 
+$won_already = [];
 foreach($numbers as $n => $number) {
   foreach ($cards as $c => $card) {
+    $win = false;
+    if (in_array($c, $won_already)) continue;
     for($y=0;$y<5;$y++) {
       for($x=0;$x<5;$x++) {
         if ($card[$y][$x] == $number) { // match
-          // echo "$number, $i, $y, $x\n";
           $h[$c][$y][$x] = 1;
           if (bingo($h[$c], $y, $x)) {
             $sum = empty_sum($h[$c], $card);
-            echo $sum * $number;
-            die("\n");
+            $result = $sum * $number;
+            // echo "number $number, card $c, [$y $x] $result\n";
+            $win = true;
+            break 2;
           }
         }
       }
     }
+    if ($win) {
+      $won_already[] = $c;
+      // echo "Won so far: ".join(', ', $won_already)."\n";
+    }
   }
 }
+
+echo $result."\n";
 
 // == Functions ==========================
 
