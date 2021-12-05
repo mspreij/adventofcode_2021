@@ -1,5 +1,7 @@
 <?php
 
+$starttime = microtime(1);
+
 $lines = explode("\n", trim(file_get_contents('5.txt')));
 foreach($lines as $line) {
   $pairs = explode(' -> ', $line);
@@ -33,6 +35,7 @@ foreach($coords as $crd) {
 }
 
 echo $hotspots;
+echo "\nTime: ".round(microtime(1)-$starttime, 4)."\n";
 
 
 function add_point($x, $y) {
