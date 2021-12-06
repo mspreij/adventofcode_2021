@@ -1,9 +1,10 @@
 <?php
 
-$fishes = explode(',', trim(file_get_contents('6.txt')));
-$count  = array_count_values($fishes);
+$fishies = explode(',', trim(file_get_contents('6.txt')));
+// instead of managing all the separate fishies, count how many there are of each and deal with those sets
+$count   = array_count_values($fishies);
 
-// every day, all the counters decrement, and the counters that reach -1 turn 6 instead, while creating as many 8's
+// every day, all the counters keys decrement, and those that reach -1 turn 6 instead, while creating as many 8's
 // create a new array for each loop and reassign it at the end, because the keys are out of order etc
 for ($i=0;$i<256;$i++) {
 	$newCount = array_fill(0, 9, 0); // init all counters here..
