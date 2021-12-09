@@ -1,5 +1,6 @@
 <?php
 
+$startTime = microtime(1);
 $fishies = explode(',', trim(file_get_contents('6.txt')));
 // instead of managing all the separate fishies, count how many there are of each and deal with those sets
 $count   = array_count_values($fishies);
@@ -18,4 +19,5 @@ for ($i=0;$i<256;$i++) {
 	}
 	$count = $newCount;
 }
-echo array_sum($count);
+echo array_sum($count)."\n";
+echo "Time: ".round(microtime(1)-$startTime, 4)."\n";
